@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from 'react-apollo'
-import { Provider as PaperProvider } from 'react-native-paper';
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
 import Home from './screens/Home'
 
@@ -11,6 +11,15 @@ const client = new ApolloClient({
     uri: "http://192.168.56.1:4000"
 });
 
+
+const theme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      primary: 'tomato',
+      accent: 'yellow',
+    },
+  };
 
 const AppNavigator = createStackNavigator({
     Home: {
@@ -21,17 +30,16 @@ const AppNavigator = createStackNavigator({
 );
 
 let Nav = createAppContainer(AppNavigator);
-
 export default class App extends React.Component {
     render() {
         return (
-            <PaperProvider>
-                <View style={{ flex: 1}}>
-                    <ApolloProvider client={client}>
+            <View style={{ flex: 1 }}>
+                <ApolloProvider client={client}>
+                    <PaperProvider theme={theme}>
                         <Nav />
-                    </ApolloProvider>
-                </View>
-            </PaperProvider>
+                    </PaperProvider>
+                </ApolloProvider>
+            </View>
         )
 
     }
