@@ -8,7 +8,7 @@ import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import Home from './screens/Home'
 
 const client = new ApolloClient({
-    uri: "http://192.168.56.1:4000"
+    uri: "http://150.165.202.211:4001"
 });
 
 
