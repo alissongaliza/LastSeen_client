@@ -1,8 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, Text, StyleSheet, FlatList, Image } from "react-native";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
-import { ActivityIndicator, Colors, Card, FAB, Paragraph, Searchbar } from 'react-native-paper';
+import { ActivityIndicator, Colors, Card, FAB, Paragraph, Searchbar, Button, withTheme } from 'react-native-paper';
+import icons from '../images';
+
+import StyledFAB from '../component/StyledFAB'
 
 const query = gql`{
     searchPopularMovies{
@@ -25,9 +28,8 @@ class Home extends React.Component {
                     <Card.Content styles={styles.content}>
                         <FAB
                             style={styles.fab}
-                            small
                             icon={({ size, color }) => (
-                                <Text style={styles.fabText}>{item.popularity}</Text>
+                                <StyledFAB number={item.popularity}/>
                             )}
                         />
                         <Paragraph style={styles.paragraph}>{item.overview}</Paragraph>
@@ -39,14 +41,15 @@ class Home extends React.Component {
 
 
     render() {
-        const {loading, error, data:{searchPopularMovies}} = this.props
+        const { loading, error, data: { searchPopularMovies } } = this.props
         if (loading)
             return <ActivityIndicator styles={styles.loading} animating={true} color={Colors.red800} />
 
         if (error)
             return <Text>Error...</Text>
+        
         return (
-            <View style={styles.renderBox}>
+            <View style={[styles.renderBox,{backgroundColor:this.props.theme.colors.background}]}>
                 <FlatList
                     // style={styles.cardList}
                     numColumns={2}
@@ -67,14 +70,12 @@ const styles = StyleSheet.create({
         position: 'absolute',
         margin: 5,
         right: 1,
-        top: -30
+        top: -20,
+        width:30,
+        height:30,
+        backgroundColor:'#ef3e36'
         // bottom: 60,
         // width: "30%"
-    },
-    fabText: {
-        position: 'relative',
-        width: "100%",
-        fontSize: 12
     },
     card: {
         width: '40%',
@@ -95,4 +96,5 @@ const styles = StyleSheet.create({
     }
 })
 
-export default graphql(query)(Home)
+// export default graphql(query)(Home)
+export default graphql(query)(withTheme(Home))
