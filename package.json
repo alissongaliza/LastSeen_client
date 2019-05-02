@@ -6,7 +6,7 @@
     "ios": "expo start --ios",
     "eject": "expo eject",
     "postinstall": "rndebugger-open",
-    "debug": "REACT_DEBUGGER=\"rndebugger-open --open --expo \" expo start"
+    "debug": "REACT_DEBUGGER=\"RNDebugger --open --expo \" expo start"
   },
   "dependencies": {
     "apollo-boost": "^0.3.1",

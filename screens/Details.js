@@ -9,6 +9,8 @@ import StyledFAB from '../component/StyledFAB'
 export default Details = (props) => {
     const { item } = props.navigation.state.params
 
+    console.log(item.title);
+    
     return (
         <View>
             <Card style={styles.card} >
@@ -21,7 +23,8 @@ export default Details = (props) => {
                         )}
                     />
                     <StreamingIcons streaming={item.streamingServices} />
-                    <Paragraph style={styles.paragraph}>{item.overview}</Paragraph>
+                    <Paragraph style={styles.title}>{item.title}</Paragraph>
+                    <Paragraph style={styles.description}>{item.overview}</Paragraph>
                 </Card.Content>
             </Card>
         </View>
@@ -59,7 +62,7 @@ const styles = StyleSheet.create({
     },
     content: {
     },
-    paragraph: {
+    description: {
         opacity: 0.6,
         height: 100,
         fontSize: 12,

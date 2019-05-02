@@ -4,7 +4,8 @@ import { View, Text, Image, StyleSheet } from 'react-native'
 export default ({ streaming }) => {
 
     renderCompanies = () => {
-
+        if(streaming == null)
+            return null
         return (
             <React.Fragment>
                 {streaming.map(({ company }) => {
@@ -18,8 +19,6 @@ export default ({ streaming }) => {
 
     return (
         <View style={styles.box}>
-            {/* {console.log(streaming)} */}
-            {/* <Image source={{uri:streaming[0].company.iconURL}} style={{width:15,height:15,backgroundColor:'white'}} /> */}
             {renderCompanies()}
         </View>
     )
@@ -35,6 +34,7 @@ const styles = StyleSheet.create({
         width: 20,
         height: 20,
         backgroundColor: 'white',
-        borderRadius: 15
+        borderRadius: 15,
+        top:-10
     }
 })

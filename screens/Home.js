@@ -11,6 +11,7 @@ import StyledFAB from '../component/StyledFAB'
 const query = gql`{
     searchPopularMovies {
         id
+        title
         popularity
         overview
         poster_fullPath
@@ -105,10 +106,13 @@ const styles = StyleSheet.create({
         // position:'relative'
     },
     content: {
+        height:200,
+        // backgroundColor:'black',
     },
     paragraph: {
         opacity: 0.6,
         height: 100,
+        backgroundColor:'black',
         fontSize: 12,
         fontWeight: '100',
         lineHeight: 15,
