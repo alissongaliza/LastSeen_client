@@ -7,9 +7,11 @@ import { DefaultTheme, Provider as PaperProvider, withTheme, Appbar } from 'reac
 
 import Home from './screens/Home'
 import Details from './screens/Details'
+import Dummy2 from './component/Dummy2'
+// import SearchList from './screens/SearchList'
 
 const client = new ApolloClient({
-    uri: "http://150.165.202.211:4001"
+    uri: "http://192.168.0.18:4000"
 });
 
 
@@ -21,7 +23,7 @@ const theme = {
         accent: '#ef3e36',
         background: '#02010a',
         text: 'white',
-        surface: '#153243'
+        surface: '#08141B'
     },
     fonts:{
         ...DefaultTheme.fonts
@@ -34,7 +36,10 @@ const AppNavigator = createStackNavigator({
     },
     Details:{
         screen: Details
-    }
+    },
+    // SearchList:{
+    //     screen: SearchList
+    // }
 },
     { initialRouteName: 'Home' }
 );

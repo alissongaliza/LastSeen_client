@@ -1,14 +1,18 @@
 import React from 'react'
 import { View, Text, Image, StyleSheet } from 'react-native'
 
-export default ({ streaming }) => {
+export default ({ streaming, maxIcons=Number.MAX_SAFE_INTEGER }) => {
 
     renderCompanies = () => {
         if(streaming == null)
             return null
+        
+        maxIndex = maxIcons > streaming.length ? streaming.length : maxIcons
+        listOfStreaming = streaming.slice(0,maxIndex)
+        
         return (
             <React.Fragment>
-                {streaming.map(({ company }) => {
+                {listOfStreaming.map(({ company }) => {
                     return (<Image key={company.id} source={{ uri: company.iconURL }} style={styles.icon} />)
 
                 })}
