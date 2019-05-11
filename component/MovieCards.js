@@ -5,11 +5,11 @@ import _ from 'lodash'
 import StreamingIcons from '../component/StreamingIcons';
 import StyledFAB from '../component/StyledFAB';
 
-export default ({title,items}) => {
-  renderCards = ({ item }) => {
-      
+export default ({items, onItemClicked}) => {
+
+  renderCards = ({ item }) => {      
     return (
-    <Card onPress={() => navigate('Details', { item })} style={styles.card}>
+    <Card onPress={() => onItemClicked(item)} style={styles.card}>
       <Card.Cover style={styles.cover} source={{ uri: item.poster_fullPath }} />
       <Card.Content style={styles.content}>
         <FAB
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   card: {
     width: '40%',
     margin: '5%',
-    height: 350,
+    height: 320,
     padding: 0
   },
   cover: {
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     // position:'relative'
   },
   content: {
-    height: 150
+    height: 100
     // backgroundColor:'black',
   },
   paragraph: {
@@ -86,7 +86,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '100',
     lineHeight: 15,
-    marginTop: 10,
-    marginLeft: -10
+    marginTop: -10,
+    marginLeft: -10,
+    marginRight: -10
   }
 })

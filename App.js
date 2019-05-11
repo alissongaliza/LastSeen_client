@@ -7,8 +7,6 @@ import { DefaultTheme, Provider as PaperProvider, withTheme, Appbar } from 'reac
 
 import Home from './screens/Home'
 import Details from './screens/Details'
-import Dummy2 from './component/Dummy2'
-// import SearchList from './screens/SearchList'
 
 const client = new ApolloClient({
     uri: "http://192.168.0.18:4000"
@@ -20,7 +18,7 @@ const theme = {
     colors: {
         ...DefaultTheme.colors,
         primary: 'white',
-        accent: '#ef3e36',
+        accent: '#08141B',
         background: '#02010a',
         text: 'white',
         surface: '#08141B'
