@@ -3,13 +3,69 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import { withTheme, Card, FAB, Paragraph } from 'react-native-paper'
 import StreamingIcons from '../component/StreamingIcons'
 import StyledFAB from '../component/StyledFAB'
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 
 
 const Details = (props) => {
   const { item } = props.navigation.state.params
 
   renderGenres = () => {
-    return item.genre_ids.map(el => <Text>{el.name}</Text>)
+    return item.genre_ids.map(el => <Paragraph>{el.name}</Paragraph>)
+  }
+
+  renderTitle = () => {
+    return item.title == item.original_title ?
+      <Paragraph style={styles.title}>{item.title}</Paragraph>
+      :
+      <Paragraph style={styles.title}>{`${item.title}(${item.original_title})`}</Paragraph>
+  }
+
+  renderStatsBar = () => {
+    return (
+      <View style={styles.statsSection}>
+        {/* <Text>{`Original title: ${item.original_title}`}</Text> */}
+        <View style={{ flex: 1 }}>
+          <Paragraph>{`Language: ${item.original_language}`}</Paragraph>
+          {item.genre_ids != null ? this.renderGenres() : null}
+          <Paragraph>{`Release date: ${item.release_date}`}</Paragraph>
+          <Paragraph>{`Runtime: ${item.runtime}`}</Paragraph>
+
+        </View>
+        <View style={{ flex: 1 }}>
+          <View style={{ flexDirection: 'row' }}>
+
+            <AntDesign name={'star'} size={30} color={'yellow'} />
+            <View style={{ flexDirection: 'column' }}>
+              <Paragraph style={{ fontSize: 20, marginLeft: 3, paddingTop: 3 }}>{item.vote_average}</Paragraph>
+              <Paragraph style={{ fontSize: 10, marginTop: -7, marginLeft: 3 }}>{`${item.vote_count} votes`}</Paragraph>
+            </View>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <MaterialIcons name={'whatshot'} size={30} color={'#e63407'} />
+            <View style={{ flexDirection: 'column' }}>
+              <Paragraph style={{ fontSize: 20, marginLeft: 3, paddingTop: 5 }}>{`${parseInt(item.popularity)}`}</Paragraph>
+              <Paragraph style={{ fontSize: 10, marginTop: -9, marginLeft: 3 }}>{'on popularity'}</Paragraph>
+
+            </View>
+
+          </View>
+
+        </View>
+      </View>
+    )
+
+  }
+
+  renderStreamingOptions = () => {
+    return (
+      <View style={styles.watchSection}>
+        <Paragraph>Watch now on your favorite platform</Paragraph>
+        <StreamingIcons streaming={item.streamingServices} iconStyles={styles.streamingIcon} />
+
+      </View>
+    )
   }
 
   return (
@@ -17,24 +73,11 @@ const Details = (props) => {
       <Card style={styles.card} theme={{ colors: { surface: '#08141B' } }}>
         <Card.Cover style={styles.cover} source={{ uri: item.poster_fullPath }} />
         <Card.Content styles={styles.content}>
-          <FAB
-            style={styles.fab}
-            icon={({ size, color }) => (
-              <StyledFAB number={item.popularity} />
-            )}
-          />
-          <StreamingIcons streaming={item.streamingServices} />
-          <View style={styles.statsSection}>
-            <Text>{`Original title: ${item.original_title}`}</Text>
-            <Text>{`Original language: ${item.original_language}`}</Text>
-            {item.genre_ids != null ? this.renderGenres() : null}
-            <Text>{`Release date: ${item.release_date}`}</Text>
-            <Text>{`Runtime: ${item.runtime}`}</Text>
-            <Text>{`Vote count: ${item.vote_count}`}</Text>
-            <Text>{`Vote average: ${item.vote_average}`}</Text>
-          </View>
-          <Paragraph style={styles.title}>{item.title}</Paragraph>
+          {renderTitle()}
+          {renderStatsBar()}
+
           <Paragraph style={styles.description}>{item.overview}</Paragraph>
+          {renderStreamingOptions()}
         </Card.Content>
       </Card>
     </View>
@@ -46,12 +89,28 @@ const styles = StyleSheet.create({
   loading: {
     padding: 5,
     margin: 10
+  }, icon: {
+    width: 40,
+    height: 40,
+    backgroundColor: 'white',
+    borderRadius: 15,
+    // top: -10
   },
+  statsSection: {
+    backgroundColor: '#02010a',
+    marginLeft: -15,
+    marginRight: -16,
+    paddingLeft: 10,
+    paddingRight: 10,
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+  },
+
   fab: {
-    position: 'absolute',
-    margin: 5,
-    right: 1,
-    top: -20,
+    // position: 'absolute',
+    // margin: 5,
+    // right: 1,
+    // top: -20,
     width: 30,
     height: 30,
     backgroundColor: '#ef3e36'

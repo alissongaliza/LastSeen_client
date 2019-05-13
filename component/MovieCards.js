@@ -5,36 +5,31 @@ import _ from 'lodash'
 import StreamingIcons from '../component/StreamingIcons';
 import StyledFAB from '../component/StyledFAB';
 
-export default ({items, onItemClicked}) => {
+export default ({ items, onItemClicked }) => {
 
-  renderCards = ({ item }) => {      
+  renderCards = ({ item }) => {
     return (
-    <Card onPress={() => onItemClicked(item)} style={styles.card}>
-      <Card.Cover style={styles.cover} source={{ uri: item.poster_fullPath }} />
-      <Card.Content style={styles.content}>
-        <FAB
-          style={styles.fab}
-          icon={({ size, color }) => (
-            <StyledFAB number={item.popularity} />
-          )}
-        />
-        <StreamingIcons streaming={item.streamingServices} maxIcons={4}/>
-        <Paragraph style={styles.paragraph}>{item.overview}</Paragraph>
-      </Card.Content>
-    </Card>)
+      <Card onPress={() => onItemClicked(item)} style={styles.card}>
+        <Card.Cover style={styles.cover} source={{ uri: item.poster_fullPath }} />
+        <Card.Content style={styles.content}>
+          <FAB
+            style={styles.fab}
+            icon={({ size, color }) => (
+              <StyledFAB number={item.popularity} />
+            )}
+          />
+          <StreamingIcons streaming={item.streamingServices} maxIcons={4} iconStyles={styles.StremingIcon} />
+          <Paragraph style={styles.paragraph}>{item.overview}</Paragraph>
+        </Card.Content>
+      </Card>)
   }
 
   return (
     <View style={styles.box}>
-      {/* <Appbar.Header>
-        <Appbar.Content
-          title={title}
-        />
-      </Appbar.Header> */}
       <FlatList
         // style={styles.cardList}
         numColumns={2}
-        data={_.orderBy(items,['popularity'],['desc'])}
+        data={_.orderBy(items, ['popularity'], ['desc'])}
         keyExtractor={(item, index) => item.id}
         renderItem={this.renderCards}
       />
@@ -50,7 +45,14 @@ const styles = StyleSheet.create({
     padding: 5,
     margin: 10
   },
-  box:{
+  icon: {
+    width: 20,
+    height: 20,
+    backgroundColor: 'white',
+    borderRadius: 15,
+    top: -10
+  },
+  box: {
     // flex:1,
     // flexDirection: 'column'
   },

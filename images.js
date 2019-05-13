@@ -1,5 +1,8 @@
 import flameIcon from './assets/flame.png'
+import star from './assets/star.png'
 
-export default {
-  flameIcon
+
+export {
+  flameIcon,
+  star
 }

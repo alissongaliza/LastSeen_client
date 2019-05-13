@@ -6,7 +6,6 @@ query searchByTitle($title:String!){
   searchByTitle(title:$title){
     title
     id
-    genre_ids
     original_language
     original_title
     overview
@@ -16,6 +15,11 @@ query searchByTitle($title:String!){
     vote_average
     vote_count
     poster_fullPath
+    popularity
+    genres{
+      name
+      id
+    }
     streamingServices {
       company {
         id
@@ -33,7 +37,6 @@ export const GetPopularMovies = gql`{
   searchPopularMovies {
     title
     id
-    genre_ids
     original_language
     original_title
     overview
@@ -43,6 +46,11 @@ export const GetPopularMovies = gql`{
     vote_average
     vote_count
     poster_fullPath
+    popularity
+    genres{
+      name
+      id
+    }
     streamingServices {
       company {
         id
