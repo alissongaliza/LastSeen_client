@@ -18,7 +18,7 @@ export default ({ items, onItemClicked }) => {
               <StyledFAB number={item.popularity} />
             )}
           />
-          <StreamingIcons streaming={item.streamingServices} maxIcons={4} iconStyles={styles.StremingIcon} />
+          <StreamingIcons streaming={item.streamingServices} maxIcons={4} iconStyles={styles.streamingIcon} />
           <Paragraph style={styles.paragraph}>{item.overview}</Paragraph>
         </Card.Content>
       </Card>)
@@ -44,6 +44,13 @@ const styles = StyleSheet.create({
   loading: {
     padding: 5,
     margin: 10
+  },
+  streamingIcon: {
+    width: 15,
+    height: 15,
+    backgroundColor: 'white',
+    borderRadius: 15,
+    top: -8
   },
   icon: {
     width: 20,
@@ -84,7 +91,7 @@ const styles = StyleSheet.create({
   paragraph: {
     opacity: 0.6,
     height: 100,
-    backgroundColor: 'black',
+    // backgroundColor: 'black',
     fontSize: 12,
     fontWeight: '100',
     lineHeight: 15,

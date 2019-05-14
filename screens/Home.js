@@ -55,7 +55,7 @@ class Home extends React.Component {
       "vote_average": 8.6,
       "vote_count": 4845,
     }
-    navigate('Details', { item:item2 })
+    navigate('Details', { item })
   }
   render() {
     const { query, popular } = this.state
@@ -91,7 +91,8 @@ class Home extends React.Component {
             }}
           </Query>
         }
-        {this.onItemClicked()}
+        {/* {this.onItemClicked()}zero
+     */}
       </View>
     )
   }

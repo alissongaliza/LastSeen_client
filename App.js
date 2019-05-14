@@ -9,7 +9,7 @@ import Home from './screens/Home'
 import Details from './screens/Details'
 
 const client = new ApolloClient({
-    uri: "http://192.168.0.18:4000"
+    uri: "http://192.168.1.148:4000"
 });
 
 

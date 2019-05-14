@@ -4,7 +4,7 @@ import { View, Text, Image, StyleSheet } from 'react-native'
 export default ({ streaming, iconStyles, maxIcons=Number.MAX_SAFE_INTEGER }) => {
 
     renderCompanies = () => {
-        if(streaming == null)
+        if(streaming == null || streaming.length == 0)
             return null
         
         maxIndex = maxIcons > streaming.length ? streaming.length : maxIcons
@@ -12,8 +12,9 @@ export default ({ streaming, iconStyles, maxIcons=Number.MAX_SAFE_INTEGER }) => 
         
         return (
             <React.Fragment>
-                {listOfStreaming.map(({ company }) => {
-                    return (<Image key={company.id} source={{ uri: company.iconURL }} style={iconStyles} />)
+                {listOfStreaming.map(( streaming ) => {
+                    if (streaming.company)
+                        return <Image key={streaming.company.id} source={{ uri: streaming.company.iconURL }} style={iconStyles} />
 
                 })}
             </React.Fragment>

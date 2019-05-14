@@ -19,7 +19,7 @@ const Details = (props) => {
     return item.title == item.original_title ?
       <Paragraph style={styles.title}>{item.title}</Paragraph>
       :
-      <Paragraph style={styles.title}>{`${item.title}(${item.original_title})`}</Paragraph>
+      <Paragraph style={styles.title}>{`${item.title}( ${item.original_title} )`}</Paragraph>
   }
 
   renderStatsBar = () => {
@@ -89,11 +89,20 @@ const styles = StyleSheet.create({
   loading: {
     padding: 5,
     margin: 10
-  }, icon: {
+  }, 
+  icon: {
     width: 40,
     height: 40,
     backgroundColor: 'white',
     borderRadius: 15,
+    // top: -10
+  },
+  streamingIcon: {
+    width: 40,
+    height: 40,
+    backgroundColor: 'white',
+    borderRadius: 40,
+    margin:1,
     // top: -10
   },
   statsSection: {
@@ -104,6 +113,10 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     flexWrap: 'wrap',
     flexDirection: 'row',
+  },
+  title: {
+    fontSize:18,
+    textAlign:'center'
   },
 
   fab: {
