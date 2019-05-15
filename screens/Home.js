@@ -1,17 +1,26 @@
 import React from "react";
-import { View, Text, StyleSheet, FlatList, Image } from "react-native";
+import { View, StyleSheet,  } from "react-native";
 import { Query } from "react-apollo";
 import { ActivityIndicator, Colors, Searchbar, withTheme } from 'react-native-paper';
 import { GetSpecificMovie, GetPopularMovies } from '../queries'
 import MovieCards from "../component/MovieCards";
+import { SplashScreen } from 'expo';
+import { connect } from "tls";
 
 class Home extends React.Component {
 
   state = {
-    query: 'war',
+    query: '',
     popular: true
   }
 
+  componentDidMount(){
+
+    SplashScreen.preventAutoHide();
+    setTimeout(()=>SplashScreen.hide(),4000)
+
+  }
+  
   onItemClicked = (item) => {
     const { navigate } = this.props.navigation
 
@@ -74,6 +83,7 @@ class Home extends React.Component {
             {({ loading, error, data: { searchPopularMovies } }) => {
               if (loading) return <ActivityIndicator styles={styles.loading} animation={true} color={Colors.red800} />
               if (error) return `Error! ${error}`;
+
               return <MovieCards title={query} items={searchPopularMovies} onItemClicked={this.onItemClicked} />
             }}
           </Query>
@@ -91,8 +101,7 @@ class Home extends React.Component {
             }}
           </Query>
         }
-        {/* {this.onItemClicked()}zero
-     */}
+
       </View>
     )
   }

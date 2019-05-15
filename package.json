@@ -15,6 +15,7 @@
     "react": "16.5.0",
     "react-apollo": "^2.5.4",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+    "react-native-app-link": "^1.0.0",
     "react-native-debugger-open": "^0.3.19",
     "react-native-paper": "^2.15.2",
     "react-native-vector-icons": "^6.4.2",

@@ -21,15 +21,15 @@ query searchByTitle($title:String!){
       id
     }
     streamingServices {
-      company {
-        id
-        name
-        iconURL
+        company {
+          id
+          name
+          iconURL
+        }
+        web_url
+        android_url
+        ios_url
       }
-      web_url
-      android_url
-      ios_url
-    }
   }
 }`
 

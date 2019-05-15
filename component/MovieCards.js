@@ -1,6 +1,6 @@
 import React from 'react'
-import { View, Text, StyleSheet, FlatList, Image } from "react-native";
-import { ActivityIndicator, Colors, Card, FAB, Paragraph, Searchbar, Button, withTheme, Appbar } from 'react-native-paper';
+import { View, StyleSheet, FlatList } from "react-native";
+import {  Card, FAB, Paragraph } from 'react-native-paper';
 import _ from 'lodash'
 import StreamingIcons from '../component/StreamingIcons';
 import StyledFAB from '../component/StyledFAB';
@@ -18,7 +18,7 @@ export default ({ items, onItemClicked }) => {
               <StyledFAB number={item.popularity} />
             )}
           />
-          <StreamingIcons streaming={item.streamingServices} maxIcons={4} iconStyles={styles.streamingIcon} />
+          <StreamingIcons streaming={item.streamingServices} maxIcons={4} iconStyles={styles.streamingIcon} alwaysRender={true} />
           <Paragraph style={styles.paragraph}>{item.overview}</Paragraph>
         </Card.Content>
       </Card>)
@@ -27,7 +27,6 @@ export default ({ items, onItemClicked }) => {
   return (
     <View style={styles.box}>
       <FlatList
-        // style={styles.cardList}
         numColumns={2}
         data={_.orderBy(items, ['popularity'], ['desc'])}
         keyExtractor={(item, index) => item.id}
@@ -60,8 +59,6 @@ const styles = StyleSheet.create({
     top: -10
   },
   box: {
-    // flex:1,
-    // flexDirection: 'column'
   },
   fab: {
     position: 'absolute',
@@ -71,8 +68,6 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     backgroundColor: '#ef3e36'
-    // bottom: 60,
-    // width: "30%"
   },
   card: {
     width: '40%',
@@ -81,17 +76,13 @@ const styles = StyleSheet.create({
     padding: 0
   },
   cover: {
-    // width:'100%',
-    // position:'relative'
   },
   content: {
     height: 100
-    // backgroundColor:'black',
   },
   paragraph: {
     opacity: 0.6,
-    height: 100,
-    // backgroundColor: 'black',
+    height: 102,
     fontSize: 12,
     fontWeight: '100',
     lineHeight: 15,

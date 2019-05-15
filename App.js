@@ -9,7 +9,7 @@ import Home from './screens/Home'
 import Details from './screens/Details'
 
 const client = new ApolloClient({
-    uri: "http://192.168.1.148:4000"
+    uri: "http://192.168.0.18:4000"
 });
 
 
@@ -21,7 +21,8 @@ const theme = {
         accent: '#08141B',
         background: '#02010a',
         text: 'white',
-        surface: '#08141B'
+        surface: '#08141B',
+        placeholder:'#a1a1a1'
     },
     fonts:{
         ...DefaultTheme.fonts
@@ -30,29 +31,34 @@ const theme = {
 
 const AppNavigator = createStackNavigator({
     Home: {
-        screen: Home
+        screen: Home,
+        navigationOptions:{
+          header: null
+        }
     },
     Details:{
-        screen: Details
-    },
-    // SearchList:{
-    //     screen: SearchList
-    // }
+        screen: Details,
+        navigationOptions: ({ navigation }) => ({
+          title: `${navigation.state.params.item.title}`,
+          headerStyle:{backgroundColor:'#08141B'},
+          headerTintColor:'#a1a1a1'
+        })
+    }
 },
-    { initialRouteName: 'Home' }
+    { initialRouteName: 'Home'}
 );
 
 let Nav = createAppContainer(AppNavigator);
 export default class App extends React.Component {
     render() {
         return (
-            <View style={{ flex: 1, backgroundColor:'black' }}>
+            //<View style={{ flex: 1, backgroundColor:'black' }}>
                 <ApolloProvider client={client}>
                     <PaperProvider theme={theme}>
                             <Nav />
                     </PaperProvider>
                 </ApolloProvider>
-            </View>
+            //</View>
         )
 
     }
